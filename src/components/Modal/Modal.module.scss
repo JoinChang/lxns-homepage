@@ -1,0 +1,106 @@
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+@keyframes modalIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+@keyframes modalOut {
+    from { opacity: 1; transform: translateY(0) scale(1); }
+    to { opacity: 0; transform: scale(0.95); }
+}
+
+.modal {
+    position: fixed;
+    height: 100dvh;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
+
+    &>.mask {
+        position: absolute;
+        inset: 0;
+        background-color: rgba(0, 0, 0, .5);
+        backdrop-filter: blur(2px);
+        animation: fadeIn .2s ease-out forwards;
+    }
+
+    &>.content {
+        position: relative;
+        background: white;
+        animation: modalIn .2s ease-out forwards;
+        clip-path: inset(0 round 8px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, .15);
+        width: 90%;
+        max-height: 90dvh;
+        max-width: 500px;
+        margin: 5dvh auto 0 auto;
+
+        &>.header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px 10px 16px 16px;
+
+            &>.title {
+                font-size: 1rem;
+                font-weight: normal;
+                margin: 0;
+            }
+
+            &>.closeButton {
+                height: 28px;
+                width: 28px;
+                align-content: center;
+                text-align: center;
+                cursor: pointer;
+                border-radius: 4px;
+                transition: background .2s;
+
+                &:hover {
+                    background: color.adjust(black, $alpha: -0.95);
+                }
+            }
+        }
+
+        &>.body {
+            padding: 0 16px 16px 16px;
+            overflow-y: auto;
+            height: calc(90dvh - 76px);
+        }
+    }
+
+    &.fullscreen {
+        &>.content {
+            height: 100dvh;
+            max-height: 100dvh;
+            width: 100%;
+            max-width: 100%;
+            margin: 0;
+            border-radius: 0;
+
+            &>.body {
+                height: calc(100dvh - 76px);
+            }
+        }
+    }
+
+    &.closing {
+        &>.mask {
+            animation: fadeOut .2s ease-out forwards;
+        }
+
+        &>.content {
+            animation: modalOut .2s ease-out forwards;
+        }
+    }
+}

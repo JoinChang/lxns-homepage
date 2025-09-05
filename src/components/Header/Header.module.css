@@ -1,0 +1,32 @@
+.avatar {
+    border-radius: 50%;
+    border: 3px white solid;
+    height: 120px;
+    position: absolute;
+    top: -28px;
+}
+
+.mainDescription {
+    position: absolute;
+    top: 16px;
+    left: 160px;
+}
+
+.name {
+    font-weight: normal;
+    font-size: 32px;
+    margin: 0;
+}
+
+.alias {
+    font-size: 15px;
+    margin: 5px 0 0 0;
+    line-height: 20px;
+}
+
+.simpleProfile {
+    border-left: 4px solid var(--theme-font-color);
+    padding-left: 8px;
+    font-weight: bold;
+    margin: 10px 0 0 0;
+}

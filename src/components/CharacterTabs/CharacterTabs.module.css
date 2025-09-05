@@ -1,0 +1,154 @@
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.characterTabs {
+    position: relative;
+    padding: 0 15px;
+    z-index: 2;
+    overflow-x: auto;
+    display: flex;
+    gap: 15px;
+}
+
+.characterTab {
+    cursor: pointer;
+    width: 120px;
+    height: 54px;
+    border-radius: 15px;
+
+    &.background {
+        position: absolute;
+        z-index: -1;
+        background: rgba(189,228,252,0.5);
+        transition: transform .3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
+    }
+
+    &>img {
+        height: 54px;
+        width: auto;
+        padding: 0 12px;
+        display: block;
+    }
+}
+
+.characterTabContent {
+    margin: 0 15px 15px 15px;
+    animation: fadeIn .2s forwards;
+
+    &>* {
+        position: relative;
+        z-index: 2;
+    }
+}
+
+.characterSection {
+    margin: 30px 0 30px 115px;
+    width: 30%;
+
+    &:before {
+        content: attr(data-section-title);
+        position: absolute;
+        display: inline-block;
+        left: -130px;
+        width: 100px;
+        padding-left: 15px;
+        font-size: 16px;
+        line-height: 20px;
+        border-top: 2px solid var(--theme-font-color);
+    }
+
+    &>* {
+        animation: fadeIn .2s forwards;
+    }
+
+    &>h1 {
+        white-space: break-spaces;
+        font-size: 28px;
+        line-height: 28px;
+        font-weight: normal;
+        margin-bottom: 0;
+    }
+
+    &>h2 {
+        white-space: break-spaces;
+        font-size: 20px;
+        line-height: 20px;
+        font-weight: normal;
+        margin-bottom: 0;
+    }
+
+    &>h3 {
+        white-space: break-spaces;
+        font-size: 18px;
+        line-height: 18px;
+        font-weight: normal;
+        margin-bottom: 0;
+    }
+
+    &>p {
+        white-space: normal;
+    }
+
+    @media screen and (max-width: 580px) {
+        margin: 30px 0 30px 85px;
+
+        &:before {
+            left: -100px;
+            width: 70px;
+        }
+    }
+
+    @media screen and (max-width: 500px) {
+        margin: 30px 0 15px 15px;
+        width: 50%;
+
+        &:before {
+            position: relative;
+            left: 0;
+            padding-left: 0;
+            padding-bottom: 6px;
+            font-size: 8px;
+            float: left;
+            width: 100%;
+        }
+    }
+}
+
+.characterStand {
+    position: absolute;
+    pointer-events: none;
+    top: 54px;
+    right: -40px;
+    height: 800px;
+    min-width: 50px;
+    z-index: 1;
+    animation: fadeIn .2s forwards;
+
+    @media screen and (max-width: 580px) {
+        height: 600px;
+        right: -20px;
+    }
+
+    @media screen and (max-width: 500px) {
+        height: 400px;
+        right: 0;
+        top: 134px;
+    }
+}
+
+.characterStandTabs {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    padding: 15px;
+    display: flex;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--theme-primary-color);
+
+    @media screen and (max-width: 580px) {
+        flex-direction: column;
+    }
+}

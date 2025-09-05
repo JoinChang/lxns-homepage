@@ -1,0 +1,24 @@
+.contactLinks {
+    display: flex;
+    gap: 15px;
+    position: absolute;
+    right: 0;
+    padding: 15px;
+}
+
+.contactLink {
+    height: 30px;
+    width: 30px;
+    padding: 10px;
+    border-radius: 50%;
+    background: $theme-primary-color;
+    text-align: center;
+    align-content: center;
+    font-size: 22px;
+    color: var(--theme-button-font-color);
+    transition: background .3s;
+
+    &:hover {
+        background: color.adjust($theme-primary-color, $lightness: 5%);
+    }
+}

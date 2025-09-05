@@ -1,0 +1,107 @@
+.tabs {
+    position: relative;
+    display: flex;
+    gap: 15px;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+.tab {
+    flex: 1;
+    background: $theme-primary-color;
+    color: $theme-button-font-color;
+    padding: 10px;
+    border-radius: 15px;
+    font-size: 15px;
+    text-align: center;
+    cursor: pointer;
+    position: relative;
+    transition: flex .2s, background .3s, transform .1s;
+
+    &:hover {
+        background: color.adjust($theme-primary-color, $lightness: 5%);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+
+    &:last-child {
+        margin: 0;
+    }
+
+    &.active {
+        flex: 2;
+        background: white;
+        color: $theme-primary-color;
+
+        &:before {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: calc(50% - 5px);
+            border-top: solid 5px white;
+            border-right: solid 5px #00800000;
+            border-left: solid 5px #00800000;
+        }
+    }
+
+    &[data-count]:after {
+        content: attr(data-count);
+        position: absolute;
+        top: 80%;
+        background: white;
+        color: $theme-primary-color;
+        padding: 0 10px;
+        display: block;
+        font-size: 12px;
+        border-radius: 8px;
+        height: 16px;
+        right: 0;
+
+        &.active {
+            display: none;
+        }
+    }
+}
+
+.tabGroup {
+    overflow-x: hidden;
+    white-space: nowrap;
+    position: relative;
+    margin: 15px auto 0;
+    left: -15px;
+    width: calc(100% + 30px);
+}
+
+.tabContent {
+    display: inline-grid;
+    position: relative;
+    background: white;
+    border-radius: 15px;
+    margin-right: 15px;
+    box-sizing: border-box;
+    width: 700px;
+    transition:
+            transform .3s cubic-bezier(0.4, 0, 0.2, 1),
+            max-height .3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: pointer;
+    overflow: hidden;
+
+    &:first-child {
+        margin-left: 15px;
+    }
+
+    &>p {
+        margin: 0;
+    }
+
+    @media screen and (max-width: 730px) {
+        width: 100%;
+        border-radius: 0;
+
+        &:first-child {
+            margin-left: 0;
+        }
+    }
+}

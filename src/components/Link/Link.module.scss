@@ -1,0 +1,6 @@
+.link {
+    @include flex-center();
+    gap: .25em;
+
+    vertical-align: top;
+}

@@ -1,0 +1,38 @@
+.button {
+    @include flex-center();
+    gap: .25em;
+
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 1px 1px 3px $theme-shadow-color;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    transform: scale(1);
+    transition:
+            opacity .3s,
+            background .3s,
+            transform .1s;
+
+    &.primary {
+        background: $theme-primary-color;
+        color: white;
+
+        &:hover {
+            background: color.adjust($theme-primary-color, $lightness: 5%);
+        }
+    }
+
+    &.white {
+        background: white;
+        color: $theme-primary-color;
+
+        &:hover {
+            background: #F0F0F0;
+        }
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}

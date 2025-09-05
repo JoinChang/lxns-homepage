@@ -1,0 +1,6 @@
+@import '../TabContent.module.css';
+
+.container {
+    overflow: hidden;
+    height: fit-content; /* 让容器高度适应内容，而不是撑满父元素，不然会影响 max-height 动画 */
+}

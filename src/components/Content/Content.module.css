@@ -1,0 +1,16 @@
+.border {
+    position: relative;
+    top: 150px;
+    width: 100%;
+    height: 50px;
+    background: url(@/assets/border.webp) repeat-x;
+    background-size: contain;
+}
+
+.content {
+    width: calc(100% - 30px);
+    background-color: var(--theme-container-background-color);
+    position: relative;
+    top: 128px;
+    padding: 140px 15px 15px 15px;
+}

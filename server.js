@@ -34,8 +34,21 @@ if (!isProduction) {
   app.use(base, sirv('./dist/client', { extensions: [] }))
 }
 
+// Serve API
+app.get('/api/favicon', async (req, res) => {
+  try {
+    const url = `https://t2.gstatic.cn/faviconV2?client=SOCIAL&url=${req.query.url}`
+    const response = await fetch(url)
+    const buffer = await response.arrayBuffer()
+    res.set('Content-Type', 'image/x-icon')
+    res.send(Buffer.from(buffer))
+  } catch (error) {
+    res.status(500).send('Error fetching favicon')
+  }
+})
+
 // Serve HTML
-app.use('*all', async (req, res) => {
+app.get('*all', async (req, res) => {
   try {
     const url = req.originalUrl.replace(base, '')
 

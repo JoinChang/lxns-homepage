@@ -9,8 +9,8 @@ interface ContactLinkProps {
 }
 
 export default function ContactLinks({ links }: { links: ContactLinkProps[] }) {
-  const linkElements = links.map((link) => (
-    <a className={classes.contactLink} key={link.href} href={link.href} title={link.label} target="_blank" rel="noopener noreferrer">
+  const linkElements = links.map((link, index) => (
+    <a key={index} className={classes.contactLink} href={link.href} title={link.label} target="_blank" rel="noopener noreferrer">
       {link.icon}
     </a>
   ));

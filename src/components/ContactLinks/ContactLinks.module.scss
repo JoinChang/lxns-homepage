@@ -7,14 +7,13 @@
 }
 
 .contactLink {
+    @include flex-center();
+
     height: 30px;
     width: 30px;
     padding: 10px;
     border-radius: 50%;
     background: $theme-primary-color;
-    text-align: center;
-    align-content: center;
-    font-size: 22px;
     color: var(--theme-button-font-color);
     transition: background .3s;
 

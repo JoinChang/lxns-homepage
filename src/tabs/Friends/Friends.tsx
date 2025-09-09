@@ -11,8 +11,8 @@ function FriendColumn({ friends }: { friends: typeof friendLinks }) {
       <p>{friend.description}</p>
       <Link
         href={friend.href}
-        icon={<img src={`https://t2.gstatic.cn/faviconV2?client=SOCIAL&url=${friend.href}`} alt={friend.name} />
-      }>
+        icon={<img src={`/api/favicon?url=${encodeURIComponent(friend.href)}`} alt={friend.name} />}
+      >
         {friend.href.replace(/^https?:\/\//, '').replace(/\/$/, '')}
       </Link>
     </div>

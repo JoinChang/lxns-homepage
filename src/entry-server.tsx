@@ -3,7 +3,8 @@ import {
   type RenderToPipeableStreamOptions,
   renderToPipeableStream,
 } from 'react-dom/server'
-import App from './App'
+import { StaticRouter } from "react-router-dom";
+import App from "@/App.tsx";
 
 /*
   React SSR streaming with Suspense works by adding JS code to the end of the
@@ -24,10 +25,12 @@ import App from './App'
   rendering its main content so we can render Vite's HTML after it.
 */
 
-export function render(_url: string, options?: RenderToPipeableStreamOptions) {
+export function render(url: string, options?: RenderToPipeableStreamOptions) {
   return renderToPipeableStream(
     <StrictMode>
-      <App />
+      <StaticRouter location={url}>
+        <App />
+      </StaticRouter>,
       <vite-streaming-end></vite-streaming-end>
     </StrictMode>,
     options,

@@ -4,7 +4,7 @@ import { socialLinks } from "@/data/socials.tsx";
 
 export default function Footer() {
   const socialElements = socialLinks.map((social, index) => (
-    <a key={index} className={classes.socialButton} href={social.href} style={{
+    <a key={index} className={classes.socialButton} href={social.href} title={social.label} target="_blank" rel="noopener noreferrer" style={{
       color: social.color
     }}>
       {social.icon}

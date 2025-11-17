@@ -30,7 +30,7 @@ export function render(url: string, options?: RenderToPipeableStreamOptions) {
     <StrictMode>
       <StaticRouter location={url}>
         <App />
-      </StaticRouter>,
+      </StaticRouter>
       <vite-streaming-end></vite-streaming-end>
     </StrictMode>,
     options,

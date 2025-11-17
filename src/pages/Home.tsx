@@ -11,7 +11,7 @@ import { contactLinks } from "../data/contacts.tsx";
 import { tabs } from "../data/tabs.tsx";
 import { products } from "../data/products.tsx";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, Fragment } from "react";
 
 export default function Home() {
   const [activeTab, setActiveTab] = useState(tabs[0].value);
@@ -65,7 +65,7 @@ export default function Home() {
   }, [activeTab]);
 
   return (
-    <main>
+    <Fragment>
       <ContactLinks links={contactLinks}/>
       <Content>
         <Header />
@@ -82,6 +82,6 @@ export default function Home() {
         <Products products={products} />
         <Footer />
       </Content>
-    </main>
+    </Fragment>
   )
 }

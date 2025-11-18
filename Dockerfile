@@ -1,4 +1,4 @@
-FROM node:20
+FROM m.daocloud.io/docker.io/library/node:20
 
 WORKDIR /app
 

@@ -1,4 +1,4 @@
-FROM node:20
+FROM dockerproxy.com/library/node:20
 
 WORKDIR /app
 

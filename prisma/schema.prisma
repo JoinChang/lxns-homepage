@@ -1,0 +1,26 @@
+datasource db {
+  provider = "postgresql"
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model PageView {
+  id        Int      @id @default(autoincrement())
+  path      String
+  userAgent String?
+  ip        String?
+  referrer  String?
+  createdAt DateTime @default(now())
+  
+  @@index([path])
+  @@index([createdAt])
+}
+
+model VisitStats {
+  id          Int      @id @default(autoincrement())
+  totalViews  Int      @default(0)
+  uniqueViews Int      @default(0)
+  lastUpdated DateTime @updatedAt
+}

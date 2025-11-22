@@ -1,0 +1,16 @@
+services:
+  app:
+    build:
+      args:
+        HTTP_PROXY: "http://172.17.0.1:7890"
+        HTTPS_PROXY: "http://172.17.0.1:7890"
+    environment:
+      NODE_ENV: "production"
+
+  worker:
+    build:
+      args:
+        HTTP_PROXY: "http://172.17.0.1:7890"
+        HTTPS_PROXY: "http://172.17.0.1:7890"
+    environment:
+      NODE_ENV: "production"

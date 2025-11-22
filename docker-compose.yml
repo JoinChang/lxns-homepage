@@ -3,11 +3,48 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-      args:
-        HTTP_PROXY: "http://172.17.0.1:7890"
-        HTTPS_PROXY: "http://172.17.0.1:7890"
     ports:
       - "5173:5173"
     environment:
-      - NODE_ENV=production
+      DATABASE_URL: "postgres://postgres:postgres@db:5432/lxns_homepage_db"
+      REDIS_URL: "redis://redis:6379"
+      NODE_ENV: "development"
+    depends_on:
+      - db
+      - redis
     restart: always
+
+  worker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      DATABASE_URL: "postgres://postgres:postgres@db:5432/lxns_homepage_db"
+      REDIS_URL: "redis://redis:6379"
+      NODE_ENV: "development"
+    depends_on:
+      - db
+      - redis
+    restart: always
+    command: ["npx", "tsx", "server/worker.ts"]
+
+  db:
+    image: m.daocloud.io/docker.io/library/postgres:16
+    environment:
+      POSTGRES_DB: "lxns_homepage_db"
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    restart: always
+  
+  redis:
+    image: m.daocloud.io/docker.io/library/redis:7
+    volumes:
+      - redisdata:/data
+    restart: always
+    command: ["redis-server", "--appendonly", "yes"]
+
+volumes:
+  pgdata:
+  redisdata:

@@ -1,12 +1,11 @@
 import { Router } from 'express'
+import { getFavicon } from '../utils/favicon'
 
 const router = Router()
 
-export function createAPIRouter(services) {
-  const { publicService } = services
-
+export function createAPIRouter() {
   router.get('/favicon', async (req, res) => {
-    const result = await publicService.fetchFavicon(req.query.url)
+    const result = await getFavicon(req.query.url as string)
 
     if (result.isOk()) {
       res.set('Content-Type', 'image/x-icon')

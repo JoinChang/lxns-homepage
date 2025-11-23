@@ -10,6 +10,41 @@
     overflow-x: auto;
     display: flex;
     gap: 15px;
+
+    &>.leftMask, &>.rightMask {
+        position: fixed;
+        height: 54px;
+        width: 30px;
+        pointer-events: none;
+    }
+
+    &>.leftMask {
+        left: 0;
+
+        &.active {
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 0.9) 30%,
+                rgba(255, 255, 255, 0.7) 60%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
+    }
+
+    &>.rightMask.active {
+        right: 0;
+
+        &.active {
+            background: linear-gradient(
+                to left,
+                rgba(255, 255, 255, 1) 0%,
+                rgba(255, 255, 255, 1) 20%,
+                rgba(255, 255, 255, 0.85) 50%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
+    }
 }
 
 .characterTab {
@@ -21,7 +56,7 @@
     &.background {
         position: absolute;
         z-index: -1;
-        background: rgba(189,228,252,0.5);
+        background: rgba(189, 228, 252, 0.5);
         transition: transform .3s cubic-bezier(0.18, 0.89, 0.32, 1.28);
     }
 

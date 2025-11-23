@@ -1,11 +1,11 @@
-import classes from './ContactLinks.module.scss';
+import classes from './ContactLinks.module.scss'
 
-import React from "react";
+import React from "react"
 
 interface ContactLinkProps {
-  href: string;
-  icon: React.ReactNode;
-  label: string;
+  href: string
+  icon: React.ReactNode
+  label: string
 }
 
 export default function ContactLinks({ links }: { links: ContactLinkProps[] }) {
@@ -13,7 +13,7 @@ export default function ContactLinks({ links }: { links: ContactLinkProps[] }) {
     <a key={index} className={classes.contactLink} href={link.href} title={link.label} target="_blank" rel="noopener noreferrer">
       {link.icon}
     </a>
-  ));
+  ))
 
   return (
     <div className={classes.contactLinks}>

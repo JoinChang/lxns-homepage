@@ -1,14 +1,14 @@
-import classes from './Character.module.css';
+import classes from './Character.module.css'
 
-import CharacterTabs from "@/components/CharacterTabs/CharacterTabs.tsx";
-import CharacterTabContent from "@/components/CharacterTabs/CharacterTabContent.tsx";
+import CharacterTabs from "@/components/CharacterTabs/CharacterTabs.tsx"
+import CharacterTabContent from "@/components/CharacterTabs/CharacterTabContent.tsx"
 
-import { CharacterProps, characters } from "@/data/characters.tsx";
+import { CharacterProps, characters } from "@/data/characters.tsx"
 
-import { useState } from "react";
+import { useState } from "react"
 
 export default function Character() {
-  const [character, setCharacter] = useState<CharacterProps>(characters[0]);
+  const [character, setCharacter] = useState<CharacterProps>(characters[0])
 
   return (
     <div className={classes.container}>

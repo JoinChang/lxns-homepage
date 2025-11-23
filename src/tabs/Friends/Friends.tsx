@@ -1,8 +1,8 @@
-import classes from './Friends.module.css';
+import classes from './Friends.module.css'
 
-import Link from "@/components/Link/Link.tsx";
+import Link from "@/components/Link/Link.tsx"
 
-import { friendLinks } from "@/data/friends.tsx";
+import { friendLinks } from "@/data/friends.tsx"
 
 function FriendColumn({ friends }: { friends: typeof friendLinks }) {
   const friendElements = friends.map((friend) => (
@@ -16,7 +16,7 @@ function FriendColumn({ friends }: { friends: typeof friendLinks }) {
         {friend.href.replace(/^https?:\/\//, '').replace(/\/$/, '')}
       </Link>
     </div>
-  ));
+  ))
 
   return (
     <div className={classes.friendColumn}>

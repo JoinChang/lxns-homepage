@@ -1,7 +1,7 @@
-import IconQq from '@/assets/icons/qq.svg?react';
-import IconDiscord from '@/assets/icons/discord.svg?react';
-import IconSteam from '@/assets/icons/steam.svg?react';
-import { IconMailFilled } from "@tabler/icons-react";
+import IconQq from '@/assets/icons/qq.svg?react'
+import IconDiscord from '@/assets/icons/discord.svg?react'
+import IconSteam from '@/assets/icons/steam.svg?react'
+import { IconMailFilled } from "@tabler/icons-react"
 
 export const contactLinks = [
   {
@@ -24,4 +24,4 @@ export const contactLinks = [
     icon: <IconMailFilled />,
     label: 'Email'
   }
-];
+]

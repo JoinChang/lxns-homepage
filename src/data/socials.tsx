@@ -1,4 +1,4 @@
-import { IconBrandBilibili, IconBrandGithubFilled, IconBrandTwitterFilled, IconRss } from "@tabler/icons-react";
+import { IconBrandBilibili, IconBrandGithubFilled, IconBrandTwitterFilled, IconRss } from "@tabler/icons-react"
 
 export const socialLinks = [
   {
@@ -25,4 +25,4 @@ export const socialLinks = [
     color: 'white',
     label: 'GitHub'
   }
-];
+]

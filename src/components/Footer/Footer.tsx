@@ -1,6 +1,6 @@
-import classes from './Footer.module.scss';
+import classes from './Footer.module.scss'
 
-import { socialLinks } from "@/data/socials.tsx";
+import { socialLinks } from "@/data/socials.tsx"
 
 export default function Footer() {
   const socialElements = socialLinks.map((social, index) => (
@@ -9,34 +9,10 @@ export default function Footer() {
     }}>
       {social.icon}
     </a>
-  ));
+  ))
 
   return (
     <div className={classes.footerWrapper}>
-      <style>{`
-        @keyframes wave-animation {
-          0% {
-            transform: translate(-90px, 0%);
-          }
-          100% {
-            transform: translate(85px, 0%);
-          }
-        }
-        .wave-use {
-          animation: wave-animation 12s linear infinite;
-        }
-        .wave-use-1 {
-          animation-delay: -2s;
-        }
-        .wave-use-2 {
-          animation-delay: -2s;
-          animation-duration: 5s;
-        }
-        .wave-use-3 {
-          animation-delay: -4s;
-          animation-duration: 3s;
-        }
-      `}</style>
       <svg 
         className={classes.waves}
         xmlns="http://www.w3.org/2000/svg"
@@ -51,9 +27,9 @@ export default function Footer() {
           />
         </defs>
         <g>
-          <use xlinkHref="#gentle-wave" x="50" y="0" fill="#7a7ca8" className="wave-use wave-use-1" />
-          <use xlinkHref="#gentle-wave" x="50" y="3" fill="#6e709c" className="wave-use wave-use-2" />
-          <use xlinkHref="#gentle-wave" x="50" y="6" fill="#646692" className="wave-use wave-use-3" />
+          <use xlinkHref="#gentle-wave" x="50" y="0" fill="#7a7ca8" className={[classes.waveUse, classes.waveUse1].join(' ')} />
+          <use xlinkHref="#gentle-wave" x="50" y="3" fill="#6e709c" className={[classes.waveUse, classes.waveUse2].join(' ')} />
+          <use xlinkHref="#gentle-wave" x="50" y="6" fill="#646692" className={[classes.waveUse, classes.waveUse3].join(' ')} />
         </g>
       </svg>
       <div className={classes.footer}>

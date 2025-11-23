@@ -1,10 +1,10 @@
-import { StrictMode } from 'react';
+import { StrictMode } from 'react'
 import {
   type RenderToPipeableStreamOptions,
   renderToPipeableStream,
-} from 'react-dom/server';
-import { StaticRouter } from "react-router-dom";
-import App from "@/App.tsx";
+} from 'react-dom/server'
+import { StaticRouter } from "react-router-dom"
+import App from "@/App.tsx"
 
 /*
   React SSR streaming with Suspense works by adding JS code to the end of the

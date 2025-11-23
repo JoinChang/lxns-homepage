@@ -1,11 +1,11 @@
-import classes from './CharacterTabs.module.css';
+import classes from './CharacterTabs.module.css'
 
-import { CharacterStandProps } from "@/data/characters.tsx";
-import Button from "../Button/Button.tsx";
+import { CharacterStandProps } from "@/data/characters.tsx"
+import Button from "../Button/Button.tsx"
 
 interface CharacterStandTabsProps {
-  stands: CharacterStandProps[];
-  onStandChange: (stand: CharacterStandProps) => void;
+  stands: CharacterStandProps[]
+  onStandChange: (stand: CharacterStandProps) => void
 }
 
 export default function CharacterStandTabs({ stands, onStandChange }: CharacterStandTabsProps) {
@@ -16,7 +16,7 @@ export default function CharacterStandTabs({ stands, onStandChange }: CharacterS
       color="white"
       onClick={() => onStandChange(stand)}
     />
-  ));
+  ))
 
   return (
     <div className={classes.characterStandTabs}>

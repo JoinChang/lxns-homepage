@@ -1,6 +1,6 @@
 export interface AlbumImageProps {
-  file: string;
-  ratio: number;
+  file: string
+  ratio: number
 }
 
 export const albumLinks: AlbumImageProps[] = [
@@ -112,4 +112,4 @@ export const albumLinks: AlbumImageProps[] = [
     file: '5a13eb5b-2af3-4823-be49-a26b2946fb7e.webp',
     ratio: 1000 / 1000
   },
-];
+]

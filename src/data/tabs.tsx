@@ -1,17 +1,17 @@
-import Character from "../tabs/Chatacter/Character.tsx";
-import Albums from "../tabs/Albums/Albums.tsx";
-import Friends from "../tabs/Friends/Friends.tsx";
+import Character from "../tabs/Chatacter/Character.tsx"
+import Albums from "../tabs/Albums/Albums.tsx"
+import Friends from "../tabs/Friends/Friends.tsx"
 
-import { albumLinks } from "./albums.tsx";
-import { friendLinks } from "./friends.tsx";
+import { albumLinks } from "./albums.tsx"
+import { friendLinks } from "./friends.tsx"
 
-import React from "react";
+import React from "react"
 
 export interface TabProps {
-  label: string;
-  value: string;
-  count?: number;
-  content: React.ReactNode;
+  label: string
+  value: string
+  count?: number
+  content: React.ReactNode
 }
 
 export const tabs: TabProps[] = [
@@ -24,12 +24,12 @@ export const tabs: TabProps[] = [
     label: 'Albums',
     value: 'albums',
     count: albumLinks.length,
-    content: <Albums />
+    content: <Albums />,
   },
   {
     label: 'Friends',
     value: 'friends',
     count: friendLinks.length,
-    content: <Friends />
+    content: <Friends />,
   }
-];
+]

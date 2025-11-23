@@ -1,21 +1,21 @@
 import {
   IconBrandBilibili, IconBrandPatreonFilled, IconBrandSteamFilled, IconHeadphonesFilled, IconPlus, IconSearch,
   IconShoppingCartFilled
-} from "@tabler/icons-react";
-import Link from "../components/Link/Link.tsx";
+} from "@tabler/icons-react"
+import Link from "../components/Link/Link.tsx"
 
-import React from "react";
+import React from "react"
 
 export interface ProductProps {
-  title: string;
-  description: React.ReactNode;
-  imageUrl: string;
+  title: string
+  description: React.ReactNode
+  imageUrl: string
   links: {
-    name: string;
-    href?: string;
-    icon: React.ReactNode;
-    label: string;
-  }[];
+    name: string
+    href?: string
+    icon: React.ReactNode
+    label: string
+  }[]
 }
 
 export const products = [

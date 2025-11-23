@@ -1,42 +1,42 @@
-import classes from "./Modal.module.scss";
-import clsx from "clsx";
+import classes from "./Modal.module.scss"
+import clsx from "clsx"
 
-import { IconX } from "@tabler/icons-react";
+import { IconX } from "@tabler/icons-react"
 
-import React, { useEffect, useState } from "react";
-import { createPortal } from "react-dom";
+import React, { useEffect, useState } from "react"
+import { createPortal } from "react-dom"
 
 interface ModalProps {
-  title: string;
-  children: React.ReactNode;
-  fullscreen?: boolean;
-  opened: boolean;
-  onClose: () => void;
+  title: string
+  children: React.ReactNode
+  fullscreen?: boolean
+  opened: boolean
+  onClose: () => void
 }
 
 export default function Modal({ title, children, fullscreen = false, opened, onClose }: ModalProps) {
-  const [closing, setClosing] = useState(false);
+  const [closing, setClosing] = useState(false)
 
   const handleClose = () => {
-    setClosing(true);
+    setClosing(true)
     setTimeout(() => {
-      setClosing(false);
-      onClose();
-    }, 200);
+      setClosing(false)
+      onClose()
+    }, 200)
   }
 
   useEffect(() => {
     if (opened) {
-      document.body.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden'
     } else {
-      document.body.style.overflow = '';
+      document.body.style.overflow = ''
     }
     return () => {
-      document.body.style.overflow = '';
-    };
-  }, [opened]);
+      document.body.style.overflow = ''
+    }
+  }, [opened])
 
-  if (!opened) return null;
+  if (!opened) return null
 
   return createPortal(
     <div className={clsx(classes.modal, {

@@ -1,26 +1,26 @@
-import { IconBrandBilibili, IconBrandTwitterFilled } from "@tabler/icons-react";
-import Tags from "../components/Tags/Tags.tsx";
+import { IconBrandBilibili, IconBrandTwitterFilled } from "@tabler/icons-react"
+import Tags from "../components/Tags/Tags.tsx"
 
-import React from "react";
+import React from "react"
 
 export interface CharacterStandProps {
   artist: {
-    name: string;
-    icon?: React.ReactNode;
-    href?: string;
+    name: string
+    icon?: React.ReactNode
+    href?: string
   }
-  url: string;
+  url: string
 }
 
 export interface CharacterProps {
-  name: string;
-  href?: string;
-  description: string;
-  birthday: string;
-  profile?: React.ReactNode;
-  story?: React.ReactNode;
-  iconUrl: string;
-  stands: CharacterStandProps[];
+  name: string
+  href?: string
+  description: string
+  birthday: string
+  profile?: React.ReactNode
+  story?: React.ReactNode
+  iconUrl: string
+  stands: CharacterStandProps[]
 }
 
 export const characters: CharacterProps[] = [
@@ -127,4 +127,4 @@ export const characters: CharacterProps[] = [
       }
     ]
   }
-];
+]

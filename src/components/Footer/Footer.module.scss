@@ -26,6 +26,40 @@
         height: 60px;
         min-height: 60px;
     }
+
+    @keyframes wave-animation {
+        0% {
+            transform: translate(-90px, 0%);
+        }
+        100% {
+            transform: translate(85px, 0%);
+        }
+    }
+
+    .waveUse {
+        animation-name: wave-animation;
+        animation-timing-function: linear;
+        animation-iteration-count: infinite;
+        will-change: transform;
+    }
+
+    .waveUse1 {
+        fill: color.scale($theme-primary-color, $lightness: 12%);
+        animation-duration: 12s;
+        animation-delay: -2s;
+    }
+
+    .waveUse2 {
+        fill: color.scale($theme-primary-color, $lightness: 6%);
+        animation-duration: 5s;
+        animation-delay: -2s;
+    }
+
+    .waveUse3 {
+        fill: $theme-primary-color;
+        animation-duration: 3s;
+        animation-delay: -4s;
+    }
 }
 
 .footer {

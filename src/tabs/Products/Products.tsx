@@ -1,8 +1,8 @@
-import classes from './Products.module.scss';
+import classes from './Products.module.scss'
 
-import Button from "@/components/Button/Button.tsx";
+import Button from "@/components/Button/Button.tsx"
 
-import { ProductProps } from "@/data/products.tsx";
+import { ProductProps } from "@/data/products.tsx"
 
 export default function Products({ products }: { products: ProductProps[] }) {
   const productElements = products.map((product, index) => {
@@ -24,7 +24,7 @@ export default function Products({ products }: { products: ProductProps[] }) {
           )}
         </div>
       )
-    });
+    })
 
     return (
       <div key={index} className={classes.productItem}>
@@ -39,8 +39,8 @@ export default function Products({ products }: { products: ProductProps[] }) {
           </div>
         </div>
       </div>
-    );
-  });
+    )
+  })
 
   return (
     <div className={classes.container}>

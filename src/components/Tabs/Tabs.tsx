@@ -1,18 +1,18 @@
-import classes from './Tabs.module.scss';
-import clsx from 'clsx';
+import classes from './Tabs.module.scss'
+import clsx from 'clsx'
 
-import { TabProps } from "@/data/tabs.tsx";
+import { TabProps } from "@/data/tabs.tsx"
 
 interface TabsProps {
-  tabs: TabProps[];
-  activeTab: string;
-  onTabChange: (value: string) => void;
+  tabs: TabProps[]
+  activeTab: string
+  onTabChange: (value: string) => void
 }
 
 export default function Tabs({ tabs, activeTab, onTabChange }: TabsProps) {
   const handleTabClick = (tabValue: string) => {
-    onTabChange(tabValue);
-  };
+    onTabChange(tabValue)
+  }
 
   const tabElements = tabs.map((tab) => (
     <div
@@ -23,7 +23,7 @@ export default function Tabs({ tabs, activeTab, onTabChange }: TabsProps) {
     >
       {tab.label}
     </div>
-  ));
+  ))
 
   return (
     <div className={classes.tabs}>

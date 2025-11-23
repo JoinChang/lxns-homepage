@@ -1,13 +1,13 @@
-import classes from './Link.module.scss';
+import classes from './Link.module.scss'
 
-import { IconLink } from "@tabler/icons-react";
+import { IconLink } from "@tabler/icons-react"
 
-import React from "react";
+import React from "react"
 
 interface LinkProps {
-  href: string;
-  icon?: React.ReactNode;
-  children: string;
+  href: string
+  icon?: React.ReactNode
+  children: string
 }
 
 export default function Link({ href, icon = <IconLink size={16} stroke={3} />, children }: LinkProps) {

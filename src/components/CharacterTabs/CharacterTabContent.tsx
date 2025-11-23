@@ -1,27 +1,27 @@
-import classes from './CharacterTabs.module.css';
+import classes from './CharacterTabs.module.css'
 
-import CharacterStandTabs from "./CharacterStandTabs.tsx";
-import Link from "../Link/Link.tsx";
+import CharacterStandTabs from "./CharacterStandTabs.tsx"
+import Link from "../Link/Link.tsx"
 
-import { CharacterProps, CharacterStandProps } from "@/data/characters.tsx";
+import { CharacterProps, CharacterStandProps } from "@/data/characters.tsx"
 
-import React, { useEffect, useState } from "react";
-import {IconLink} from "@tabler/icons-react";
+import React, { useEffect, useState } from "react"
+import { IconLink } from "@tabler/icons-react"
 
 function CharacterSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div className={classes.characterSection} data-section-title={title}>
       {children}
     </div>
-  );
+  )
 }
 
 export default function CharacterTabContent({ character }: { character: CharacterProps }) {
-  const [stand, setStand] = useState<CharacterStandProps>(character.stands[0]);
+  const [stand, setStand] = useState<CharacterStandProps>(character.stands[0])
 
   useEffect(() => {
-    setStand(character.stands[0]);
-  }, [character]);
+    setStand(character.stands[0])
+  }, [character])
 
   return (
     <div key={character.name} className={classes.characterTabContent}>
@@ -66,5 +66,5 @@ export default function CharacterTabContent({ character }: { character: Characte
       </CharacterSection>
       <CharacterStandTabs stands={character.stands} onStandChange={setStand}/>
     </div>
-  );
+  )
 }

@@ -1,6 +1,6 @@
-import classes from './Header.module.css';
+import classes from './Header.module.css'
 
-import Link from "../Link/Link.tsx";
+import Link from "../Link/Link.tsx"
 
 export default function Header() {
   return (

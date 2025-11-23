@@ -1,57 +1,57 @@
-import classes from './AlbumsWaterfall.module.css';
+import classes from './AlbumsWaterfall.module.css'
 
-import AlbumImage from "./AlbumImage.tsx";
+import AlbumImage from "./AlbumImage.tsx"
 
-import { AlbumImageProps } from "@/data/albums.tsx";
+import { AlbumImageProps } from "@/data/albums.tsx"
 
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react"
 
 interface AlbumsWaterfallProps {
-  images: AlbumImageProps[];
+  images: AlbumImageProps[]
 }
 
 export default function AlbumsWaterfall({ images }: AlbumsWaterfallProps) {
-  const [columns, setColumns] = useState(3);
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [columns, setColumns] = useState(3)
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const container = containerRef.current;
-    if (!container) return;
+    const container = containerRef.current
+    if (!container) return
 
     const handleResize = () => {
-      const width = container.clientWidth;
+      const width = container.clientWidth
       if (width <= 300) {
-        setColumns(1);
+        setColumns(1)
       } else if (width <= 580) {
-        setColumns(2);
+        setColumns(2)
       } else {
-        setColumns(3);
+        setColumns(3)
       }
     }
 
-    handleResize();
+    handleResize()
 
-    const observer = new ResizeObserver(handleResize);
+    const observer = new ResizeObserver(handleResize)
 
-    observer.observe(container);
+    observer.observe(container)
 
     return () => {
-      observer.disconnect();
-    };
-  }, [containerRef]);
+      observer.disconnect()
+    }
+  }, [containerRef])
 
   const columned = useMemo(() => {
-    const cols: AlbumImageProps[][] = Array.from({ length: columns }, () => []);
-    const heights = Array(columns).fill(0);
+    const cols: AlbumImageProps[][] = Array.from({ length: columns }, () => [])
+    const heights = Array(columns).fill(0)
 
     images.forEach((img) => {
-      const min = heights.indexOf(Math.min(...heights));
-      cols[min].push(img);
-      heights[min] += 1 / img.ratio;
-    });
+      const min = heights.indexOf(Math.min(...heights))
+      cols[min].push(img)
+      heights[min] += 1 / img.ratio
+    })
 
-    return cols;
-  }, [images, columns]);
+    return cols
+  }, [images, columns])
 
   return (
     <div className={classes.albumWaterfall} ref={containerRef}>
@@ -63,5 +63,5 @@ export default function AlbumsWaterfall({ images }: AlbumsWaterfallProps) {
         </div>
       ))}
     </div>
-  );
+  )
 }

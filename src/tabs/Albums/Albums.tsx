@@ -1,30 +1,30 @@
-import classes from './Albums.module.css';
+import classes from './Albums.module.css'
 
-import { IconArrowsMaximize } from "@tabler/icons-react";
-import AlbumsWaterfall from "@/components/AlbumsWaterfall/AlbumsWaterfall.tsx";
-import Button from "@/components/Button/Button.tsx";
-import Modal from "@/components/Modal/Modal.tsx";
+import { IconArrowsMaximize } from "@tabler/icons-react"
+import AlbumsWaterfall from "@/components/AlbumsWaterfall/AlbumsWaterfall.tsx"
+import Button from "@/components/Button/Button.tsx"
+import Modal from "@/components/Modal/Modal.tsx"
 
-import { albumLinks } from "@/data/albums.tsx";
+import { albumLinks } from "@/data/albums.tsx"
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from "react"
 
 export default function Albums() {
-  const [opened, setOpened] = useState(false);
+  const [opened, setOpened] = useState(false)
 
   useEffect(() => {
     const handleResize = () => {
-      document.querySelector(`.${classes.container}`)?.scrollTo(0, 0);
+      document.querySelector(`.${classes.container}`)?.scrollTo(0, 0)
     }
 
-    handleResize();
+    handleResize()
 
-    window.addEventListener('resize', handleResize);
+    window.addEventListener('resize', handleResize)
 
     return () => {
-      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('resize', handleResize)
     }
-  }, []);
+  }, [])
 
   return (
     <div className={classes.container}>

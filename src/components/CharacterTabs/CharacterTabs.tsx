@@ -1,4 +1,4 @@
-import classes from './CharacterTabs.module.css'
+import classes from './CharacterTabs.module.scss'
 
 import { CharacterProps } from "@/data/characters.tsx"
 import clsx from 'clsx'

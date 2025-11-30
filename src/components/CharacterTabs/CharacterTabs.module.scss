@@ -173,17 +173,142 @@
     }
 }
 
-.characterStandTabs {
+.fabContainer {
     position: absolute;
-    right: 0;
-    bottom: 0;
-    padding: 15px;
-    display: flex;
-    gap: 10px;
-    font-size: 14px;
-    color: var(--theme-primary-color);
+    right: 20px;
+    bottom: 20px;
+    z-index: 10;
+    width: 48px;
+    height: 48px;
+}
 
-    @media screen and (max-width: 580px) {
-        flex-direction: column;
+.fabButtonWrapper {
+    position: absolute;
+    inset: 0;
+}
+
+.fabButton {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: none;
+    background: var(--theme-primary-color);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 3px var(--theme-shadow-color);
+    transition: opacity .3s,
+                background .3s,
+                transform .2s;
+    z-index: 2;
+
+    &:hover {
+        background: color.adjust($theme-primary-color, $lightness: 5%);
+    }
+
+    &:active {
+        transform: scale(0.95);
+    }
+}
+
+.fabButtonOpen {
+    transform: rotate(180deg);
+
+    &:active {
+        transform: rotate(180deg) scale(0.95);
+    }
+}
+
+.fabMenu {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 0;
+    height: 0;
+    pointer-events: none;
+}
+
+.fabMenuOpen {
+    pointer-events: auto;
+}
+
+.fabMenuItem {
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    margin-left: -20px;
+    margin-top: -20px;
+    border-radius: 50%;
+    border: none;
+    background: white;
+    color: var(--theme-primary-color);
+    font-weight: 600;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 3px var(--theme-shadow-color);
+    opacity: 0;
+    transform: scale(0.3);
+    transition: transform .2s,
+                opacity .2s,
+                background .3s;
+    
+    --angle: calc(90deg + (90deg / (var(--total-items) - 1)) * var(--item-index));
+    --radius: 60px;
+    --target-x: calc(cos(var(--angle)) * var(--radius));
+    --target-y: calc(sin(var(--angle)) * var(--radius) * -1);
+
+    &:hover {
+        background: #F0F0F0;
+    }
+
+    &:active {
+        transform: translate(var(--target-x), var(--target-y)) scale(0.95);
+    }
+}
+
+.fabMenuItemActive {
+    background: var(--theme-primary-color);
+    color: white;
+
+    &:hover {
+        background: color.adjust($theme-primary-color, $lightness: 5%);
+    }
+}
+
+.fabMenuOpen .fabMenuItem {
+    opacity: 1;
+    transform: translate(var(--target-x), var(--target-y)) scale(1);
+    transition: transform .3s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+                opacity .2s,
+                background .3s;
+    transition-delay: calc(var(--item-index) * 0.05s);
+}
+
+@media screen and (max-width: 580px) {
+    .fabContainer {
+        right: 15px;
+        bottom: 15px;
+        width: 44px;
+        height: 44px;
+    }
+
+    .fabButton {
+        width: 44px;
+        height: 44px;
+    }
+
+    .fabMenuItem {
+        width: 36px;
+        height: 36px;
+        margin-left: -18px;
+        margin-top: -18px;
+        font-size: 14px;
+        --radius: 52px;
     }
 }

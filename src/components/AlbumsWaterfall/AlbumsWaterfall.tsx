@@ -14,6 +14,15 @@ export default function AlbumsWaterfall({ images }: AlbumsWaterfallProps) {
   const [columns, setColumns] = useState(3)
   const containerRef = useRef<HTMLDivElement>(null)
 
+  const sortedImages = useMemo(() => {
+    return images.slice().sort((a, b) => {
+      if (a.date && b.date) {
+        return new Date(b.date).getTime() - new Date(a.date).getTime()
+      }
+      return 0
+    })
+  }, [images])
+
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -44,14 +53,14 @@ export default function AlbumsWaterfall({ images }: AlbumsWaterfallProps) {
     const cols: AlbumImageProps[][] = Array.from({ length: columns }, () => [])
     const heights = Array(columns).fill(0)
 
-    images.forEach((img) => {
+    sortedImages.forEach((img) => {
       const min = heights.indexOf(Math.min(...heights))
       cols[min].push(img)
       heights[min] += 1 / img.ratio
     })
 
     return cols
-  }, [images, columns])
+  }, [sortedImages, columns])
 
   return (
     <div className={classes.albumWaterfall} ref={containerRef}>

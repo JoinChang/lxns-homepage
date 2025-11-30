@@ -66,7 +66,7 @@ export default function Home() {
 
   return (
     <Fragment>
-      <ContactLinks links={contactLinks}/>
+      <ContactLinks links={contactLinks} />
       <Content>
         <Header />
         <Tabs tabs={tabs} activeTab={activeTab} onTabChange={setActiveTab} />

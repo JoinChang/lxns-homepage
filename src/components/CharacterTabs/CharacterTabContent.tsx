@@ -1,4 +1,4 @@
-import classes from './CharacterTabs.module.css'
+import classes from './CharacterTabs.module.scss'
 
 import CharacterStandTabs from "./CharacterStandTabs.tsx"
 import Link from "../Link/Link.tsx"
@@ -18,10 +18,17 @@ function CharacterSection({ title, children }: { title: string; children: React.
 
 export default function CharacterTabContent({ character }: { character: CharacterProps }) {
   const [stand, setStand] = useState<CharacterStandProps>(character.stands[0])
+  const [standIndex, setStandIndex] = useState(0)
 
   useEffect(() => {
     setStand(character.stands[0])
+    setStandIndex(0)
   }, [character])
+
+  const handleStandChange = (newStand: CharacterStandProps, index: number) => {
+    setStand(newStand)
+    setStandIndex(index)
+  }
 
   return (
     <div key={character.name} className={classes.characterTabContent}>
@@ -64,7 +71,7 @@ export default function CharacterTabContent({ character }: { character: Characte
           </h3>
         )}
       </CharacterSection>
-      <CharacterStandTabs stands={character.stands} onStandChange={setStand}/>
+      <CharacterStandTabs stands={character.stands} activeIndex={standIndex} onStandChange={handleStandChange}/>
     </div>
   )
 }

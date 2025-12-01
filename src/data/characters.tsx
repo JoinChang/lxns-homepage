@@ -46,7 +46,15 @@ export const characters: CharacterProps[] = [
           icon: <IconBrandBilibili size={20} stroke={3} />,
           href: 'https://space.bilibili.com/7495112'
         },
-        url: '/static/character-1-1.webp'
+        url: '/static/character-1-20250804.webp'
+      },
+      {
+        artist: {
+          name: 'Hibiki-147',
+          icon: <IconBrandBilibili size={20} stroke={3} />,
+          href: 'https://space.bilibili.com/38989039'
+        },
+        url: '/static/character-1-20251006.webp'
       },
       {
         artist: {
@@ -54,7 +62,7 @@ export const characters: CharacterProps[] = [
           icon: <IconBrandTwitterFilled size={20} stroke={3} />,
           href: 'https://x.com/Mupz__'
         },
-        url: '/static/character-1-2.webp'
+        url: '/static/character-1-20241030.webp'
       },
       {
         artist: {
@@ -62,7 +70,7 @@ export const characters: CharacterProps[] = [
           icon: <IconBrandBilibili size={20} stroke={3} />,
           href: 'https://space.bilibili.com/20266608'
         },
-        url: '/static/character-1-3.webp'
+        url: '/static/character-1-20220730.webp'
       }
     ]
   },
@@ -86,7 +94,7 @@ export const characters: CharacterProps[] = [
           icon: <IconBrandBilibili size={20} stroke={3} />,
           href: 'https://space.bilibili.com/317260186'
         },
-        url: '/static/character-2-1.webp'
+        url: '/static/character-2-20250812.webp'
       },
       {
         artist: {
@@ -94,7 +102,7 @@ export const characters: CharacterProps[] = [
           icon: <IconBrandBilibili size={20} stroke={3} />,
           href: 'https://space.bilibili.com/415528028'
         },
-        url: '/static/character-2-2.webp'
+        url: '/static/character-2-20230919.webp'
       },
       {
         artist: {
@@ -102,7 +110,7 @@ export const characters: CharacterProps[] = [
           icon: <IconBrandBilibili size={20} stroke={3} />,
           href: 'https://space.bilibili.com/34785075'
         },
-        url: '/static/character-2-3.webp'
+        url: '/static/character-2-20210924.webp'
       }
     ]
   },

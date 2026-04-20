@@ -12,7 +12,7 @@ interface SSRConfig {
 
 interface SSRTemplateResult {
   template: string
-  render: (url: string, options: RenderOptions) => RenderResult
+  render: (url: string, ssrData: Record<string, unknown>, options: RenderOptions) => RenderResult
 }
 
 interface RenderOptions {
@@ -54,12 +54,16 @@ export class SSRService {
     }
   }
 
-  async handleSSRRequest(req: Request, res: Response, base: string = '/'): Promise<void> {
+  async handleSSRRequest(
+    req: Request,
+    res: Response,
+    base: string = '/',
+    ssrData: Record<string, unknown> = {},
+  ): Promise<void> {
     const url = req.originalUrl.replace(base, '')
-    
-    // Load template and render function
+
     const ssrResult = await this.loadTemplate(url)
-    
+
     if (ssrResult.isErr()) {
       this.fixStacktrace(ssrResult.error)
       console.error('SSR template load error:', ssrResult.error.message)
@@ -71,8 +75,7 @@ export class SSRService {
     const { template, render } = ssrResult.value
     let didError = false
 
-    // Render React app with streaming
-    const { pipe, abort } = render(url, {
+    const { pipe, abort } = render(url, ssrData, {
       onShellError: () => {
         res.status(500)
         res.set({ 'Content-Type': 'text/html' })
@@ -83,13 +86,14 @@ export class SSRService {
         res.set({ 'Content-Type': 'text/html' })
 
         const [htmlStart, htmlEnd] = template.split(`<!--app-html-->`)
-        
-        // Transform stream to inject HTML template parts
+        const payload = `<script>window.__SSR_DATA__ = ${JSON.stringify(ssrData).replace(/</g, '\\u003c')};</script>`
+        const htmlStartWithData = htmlStart + payload
+
         const transformStream = new Transform({
           transform(chunk, encoding, callback) {
             const chunkStr = chunk.toString()
-            
-            // Check for streaming end marker (see entry-server.tsx)
+
+            // 约定的流结束标记，见 entry-server.tsx
             if (chunkStr.endsWith('<vite-streaming-end></vite-streaming-end>')) {
               res.write(chunkStr.slice(0, -41) + htmlEnd, 'utf-8')
             } else {
@@ -103,8 +107,7 @@ export class SSRService {
           res.end()
         })
 
-        // Write HTML head and start streaming
-        res.write(htmlStart)
+        res.write(htmlStartWithData)
         pipe(transformStream)
       },
       onError: (error: Error) => {
@@ -113,7 +116,6 @@ export class SSRService {
       },
     })
 
-    // Set timeout to abort long-running renders
     setTimeout(() => {
       abort()
     }, this.abortDelay)
@@ -128,7 +130,6 @@ export class SSRService {
       return err(new Error('Vite server is not initialized in SSRService'))
     }
 
-    // Always read fresh template in development
     const template = await fs.readFile('./index.html', 'utf-8')
     const transformedTemplate = await this.vite.transformIndexHtml(url, template)
     const render = (await this.vite.ssrLoadModule('/src/entry-server.tsx')).render

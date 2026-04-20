@@ -1,0 +1,113 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heading {
+  @include page-heading;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 16px 20px;
+  border-left: 4px solid $theme-primary-color;
+  box-shadow: 1px 1px 3px $theme-shadow-color;
+  border-radius: 5px;
+  background: white;
+}
+
+.sectionHead {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+
+  h3 {
+    margin: 0;
+    font-size: 15px;
+    color: $theme-font-color;
+    font-weight: bold;
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    color: $theme-font-color;
+    opacity: 0.7;
+    line-height: 1.5;
+  }
+}
+
+.actionBtn {
+  align-self: flex-start;
+}
+
+.message {
+  padding: 10px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  border-left: 4px solid transparent;
+}
+
+.ok {
+  background: #e9f7e9;
+  color: #2e6b2e;
+  border-left-color: #6b9f6b;
+}
+
+.err {
+  background: #ffe5e5;
+  color: #a33;
+  border-left-color: #a33;
+}
+
+.scanResult {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-top: 4px;
+}
+
+.scanStats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  font-size: 13px;
+  color: $theme-font-color;
+  opacity: 0.85;
+}
+
+.scanOrphan {
+  color: #a33;
+  font-weight: bold;
+  opacity: 1;
+}
+
+.scanGroup {
+  font-size: 13px;
+  color: $theme-font-color;
+
+  summary {
+    cursor: pointer;
+    padding: 6px 0;
+    color: $theme-primary-color;
+    font-weight: bold;
+  }
+
+  ul {
+    margin: 0;
+    padding: 4px 0 4px 18px;
+    max-height: 200px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 12px;
+    opacity: 0.85;
+
+    li {
+      padding: 2px 0;
+    }
+  }
+}
+

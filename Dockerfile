@@ -8,7 +8,8 @@ WORKDIR /app
 COPY package.json yarn.lock .yarnrc.yml ./
 COPY prisma ./prisma
 
-RUN yarn install --immutable
+RUN yarn install --immutable --inline-builds > /tmp/yarn-install.log 2>&1 \
+  || (echo "=== yarn install failed ===" && cat /tmp/yarn-install.log && exit 1)
 
 COPY . .
 RUN yarn build

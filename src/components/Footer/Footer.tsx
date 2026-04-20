@@ -1,5 +1,7 @@
 import classes from './Footer.module.scss'
 
+import { Link } from 'react-router-dom'
+import { IconLayoutDashboard } from '@tabler/icons-react'
 import { socialLinks } from "@/data/socials.tsx"
 
 export default function Footer() {
@@ -35,7 +37,17 @@ export default function Footer() {
       <div className={classes.footer}>
         {socialElements}
         <p>Copyright &copy; {new Date().getFullYear()} <a href="https://lxns.net">Lxns Network</a></p>
-        <p><a href="https://beian.miit.gov.cn">粤ICP备18035696号</a></p>
+        <p>
+          <a href="https://beian.miit.gov.cn">粤ICP备18035696号</a>
+        </p>
+        <Link
+          to="/dashboard"
+          className={classes.adminLink}
+          aria-label="管理面板"
+          title="管理面板"
+        >
+          <IconLayoutDashboard size={18} stroke={2} />
+        </Link>
       </div>
     </div>
   )

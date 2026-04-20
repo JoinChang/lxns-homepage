@@ -6,6 +6,7 @@ services:
         HTTPS_PROXY: "http://172.17.0.1:7890"
     environment:
       NODE_ENV: "production"
+      BETTER_AUTH_URL: "https://lxns.net"
 
   worker:
     build:

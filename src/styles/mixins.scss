@@ -4,3 +4,19 @@
     justify-content: $justify;
     align-items: $align;
 }
+
+// dashboard 页面主标题：4px 左 accent + 主色粗体，小屏字号缩一档
+// 用 CSS var 是因为 additionalData 把 mixins.scss 也注入一遍，导致 SCSS 变量在
+// mixin 自身的解析作用域里不可见（自引用），所以走全局 CSS var 兜底
+@mixin page-heading {
+    margin: 0;
+    font-size: 18px;
+    color: var(--theme-primary-color);
+    font-weight: bold;
+    padding-left: 8px;
+    border-left: 4px solid var(--theme-primary-color);
+
+    @media (max-width: 480px) {
+        font-size: 16px;
+    }
+}

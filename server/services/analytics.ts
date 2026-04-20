@@ -24,11 +24,7 @@ export class AnalyticsService {
         },
         {
           removeOnComplete: true,
-          attempts: 3,
-          backoff: {
-            type: 'exponential',
-            delay: 1000,
-          },
+          attempts: 1,
         }
       )
 

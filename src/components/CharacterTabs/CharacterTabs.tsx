@@ -36,7 +36,6 @@ export default function CharacterTabs({ characters, onCharacterChange }: Charact
 
     backgroundElement.style.transform = `translateX(${translateX}px)`
 
-    // 处理遮罩显示
     const handleScroll = () => {
       const scrollLeft = Math.round(characterTabs.scrollLeft)
       setLeftMaskActive(scrollLeft > 0)

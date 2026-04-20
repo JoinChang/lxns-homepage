@@ -31,4 +31,8 @@
     &>p {
         margin: 0 0 5px 0;
     }
+
+    &>a {
+        font-size: 14px;
+    }
 }

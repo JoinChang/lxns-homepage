@@ -1,12 +1,12 @@
 import classes from './Friends.module.css'
 
 import Link from "@/components/Link/Link.tsx"
+import { useSSRData } from "@/contexts/SSRDataContext.tsx"
+import type { FriendLink } from "@/data/common.tsx"
 
-import { friendLinks } from "@/data/friends.tsx"
-
-function FriendColumn({ friends }: { friends: typeof friendLinks }) {
+function FriendColumn({ friends }: { friends: FriendLink[] }) {
   const friendElements = friends.map((friend) => (
-    <div key={friend.name} className={classes.friendItem}>
+    <div key={friend.id} className={classes.friendItem}>
       <h2>{friend.name}</h2>
       <p>{friend.description}</p>
       <Link
@@ -26,6 +26,8 @@ function FriendColumn({ friends }: { friends: typeof friendLinks }) {
 }
 
 export default function Friends() {
+  const { friends } = useSSRData()
+
   return (
     <div className={classes.container}>
       <h1 className={classes.title}>
@@ -34,7 +36,7 @@ export default function Friends() {
       <p className={classes.description}>
         这里是我的朋友们，按照字母顺序排序：
       </p>
-      <FriendColumn friends={friendLinks} />
+      <FriendColumn friends={friends} />
     </div>
   )
 }

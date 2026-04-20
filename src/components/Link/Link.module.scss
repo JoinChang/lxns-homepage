@@ -2,5 +2,8 @@
     @include flex-center();
     gap: .25em;
 
-    vertical-align: top;
+    vertical-align: center;
+    position: relative;
+    line-height: 1;
+    bottom: -.2rem;
 }

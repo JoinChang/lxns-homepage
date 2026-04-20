@@ -1,0 +1,16 @@
+.brandSubPlaceholder {
+  display: inline-flex;
+  align-items: center;
+  height: 14px;
+}
+
+.navItemPlaceholder {
+  background: rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+}
+
+.contentBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

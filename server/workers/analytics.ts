@@ -24,21 +24,6 @@ const worker = new Worker(
       ts?: number
     }
 
-    let uniqueInc = 0
-    if (it.ip) {
-      try {
-        const key = uniqueKeyForToday()
-        const added = await redis.sadd(key, it.ip)
-        if (added === 1) {
-          uniqueInc = 1
-        }
-        await redis.expire(key, 60 * 60 * 24 * 8)
-      } catch (e) {
-        console.error('Redis error while determining unique visitor:', e)
-        uniqueInc = 0
-      }
-    }
-
     await prisma.$transaction(async (tx) => {
       await tx.pageView.create({
         data: {
@@ -49,25 +34,37 @@ const worker = new Worker(
           createdAt: it.ts ? new Date(it.ts) : undefined,
         },
       })
-
       const stats = await tx.visitStats.findFirst()
       if (stats) {
         await tx.visitStats.update({
           where: { id: stats.id },
-          data: {
-            totalViews: { increment: 1 },
-            uniqueViews: uniqueInc ? { increment: uniqueInc } : undefined,
-          },
+          data: { totalViews: { increment: 1 } },
         })
       } else {
         await tx.visitStats.create({
-          data: {
-            totalViews: 1,
-            uniqueViews: uniqueInc ? 1 : 0,
-          },
+          data: { totalViews: 1, uniqueViews: 0 },
         })
       }
     })
+
+    if (it.ip) {
+      try {
+        const key = uniqueKeyForToday()
+        const added = await redis.sadd(key, it.ip)
+        await redis.expire(key, 60 * 60 * 24 * 8)
+        if (added === 1) {
+          const stats = await prisma.visitStats.findFirst()
+          if (stats) {
+            await prisma.visitStats.update({
+              where: { id: stats.id },
+              data: { uniqueViews: { increment: 1 } },
+            })
+          }
+        }
+      } catch (e) {
+        console.error('Redis error while determining unique visitor:', e)
+      }
+    }
 
     return { ok: true }
   },
@@ -76,10 +73,6 @@ const worker = new Worker(
     concurrency: 5,
   }
 )
-
-worker.on('completed', (job) => {
-  console.log('Completed job', job.id)
-})
 
 worker.on('failed', (job, err) => {
   console.error('Failed job', job?.id, err)

@@ -12,12 +12,14 @@ until nc -z redis 6379; do
 done
 echo "Redis is up!"
 
-if [ "$NODE_ENV" = "production" ]; then
-  echo "Applying migrations for production..."
+echo "Generating Prisma Client..."
+npx prisma generate
+
+if [ "$RUN_MIGRATIONS" = "true" ]; then
+  echo "Running prisma migrate deploy..."
   npx prisma migrate deploy
 else
-  echo "Applying migrations for development..."
-  npx prisma migrate dev
+  echo "Skipping prisma migrations"
 fi
 
 exec "$@"

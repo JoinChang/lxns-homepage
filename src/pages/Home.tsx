@@ -17,7 +17,6 @@ export default function Home() {
   const [activeTab, setActiveTab] = useState(tabs[0].value)
   const tabGroupRef = useRef<HTMLDivElement>(null)
 
-  // 处理触摸滑动，切换 activeTab
   useEffect(() => {
     const tabGroup = tabGroupRef.current
     if (!tabGroup) return

@@ -1,0 +1,26 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+
+  h1 {
+    @include page-heading;
+  }
+}
+
+.error {
+  background: #ffe5e5;
+  color: #a33;
+  padding: 10px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  border-left: 4px solid #a33;
+}

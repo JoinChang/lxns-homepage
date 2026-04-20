@@ -1,38 +1,17 @@
 import classes from "./AlbumsWaterfall.module.css"
 
-import { AlbumImageProps } from "@/data/albums.tsx"
+import type { AlbumImageProps } from "@/data/common.tsx"
+import { useLazyImageSrc } from "@/components/LazyImage/LazyImage.tsx"
+import AlbumCaption from "@/components/AlbumCaption/AlbumCaption.tsx"
 
 import { useEffect, useRef } from "react"
 
-export default function AlbumImage({ file, ratio }: AlbumImageProps) {
+export default function AlbumImage({ url, file, ratio, artist, date }: AlbumImageProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   const ref = useRef<HTMLImageElement>(null)
 
-  // 图片懒加载
-  useEffect(() => {
-    const img = ref.current
-    if (!img) return
+  useLazyImageSrc(ref, url)
 
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const target = entry.target as HTMLImageElement
-          target.src = target.dataset.src || ''
-          observer.unobserve(target)
-        }
-      })
-    }, {
-      rootMargin: '100px',
-    })
-
-    observer.observe(img)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [ref])
-
-  // 鼠标跟随与点击效果
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -140,7 +119,7 @@ export default function AlbumImage({ file, ratio }: AlbumImageProps) {
     <div style={{ perspective: '1500px' }} ref={containerRef}>
       <div className={classes.image} style={{ paddingTop: `${100 / ratio}%` }}>
         <img
-          data-src={`https://assets.lxns.net/homepage/albums/${file}`}
+          data-src={url}
           ref={ref}
           alt={file}
           style={{
@@ -152,6 +131,7 @@ export default function AlbumImage({ file, ratio }: AlbumImageProps) {
             objectFit: "cover",
           }}
         />
+        <AlbumCaption artist={artist} date={date} />
         <div className={classes.glow}/>
       </div>
     </div>

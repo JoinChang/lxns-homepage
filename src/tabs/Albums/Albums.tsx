@@ -1,16 +1,16 @@
 import classes from './Albums.module.css'
 
-import { IconArrowsMaximize } from "@tabler/icons-react"
-import AlbumsWaterfall from "@/components/AlbumsWaterfall/AlbumsWaterfall.tsx"
-import Button from "@/components/Button/Button.tsx"
-import Modal from "@/components/Modal/Modal.tsx"
+import { IconArrowsMaximize } from '@tabler/icons-react'
+import AlbumsWaterfall from '@/components/AlbumsWaterfall/AlbumsWaterfall.tsx'
+import Button from '@/components/Button/Button.tsx'
+import Modal from '@/components/Modal/Modal.tsx'
+import { useSSRData } from '@/contexts/SSRDataContext.tsx'
 
-import { albumLinks } from "@/data/albums.tsx"
-
-import { useEffect, useState } from "react"
+import { useEffect, useState } from 'react'
 
 export default function Albums() {
   const [opened, setOpened] = useState(false)
+  const { albums } = useSSRData()
 
   useEffect(() => {
     const handleResize = () => {
@@ -36,7 +36,7 @@ export default function Albums() {
         <div className={classes.description}>
           这里记录着我的一些稿件，往下滚动可以查看更多
         </div>
-        <AlbumsWaterfall images={albumLinks}/>
+        <AlbumsWaterfall images={albums}/>
       </Modal>
       <h1 className={classes.title}>
         回忆相册
@@ -44,7 +44,7 @@ export default function Albums() {
       <p className={classes.description}>
         记录过往的点点滴滴
       </p>
-      <AlbumsWaterfall images={albumLinks} />
+      <AlbumsWaterfall images={albums} />
       <div className={classes.showMore}>
         <div className={classes.mask} />
         <Button

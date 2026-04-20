@@ -1,0 +1,31 @@
+.iconBtn {
+  @include flex-center();
+  border-radius: 50%;
+  background: white;
+  color: $theme-primary-color;
+  border: 1px solid rgba($theme-primary-color, 0.25);
+  cursor: pointer;
+  user-select: none;
+  transition:
+    background 0.3s,
+    color 0.3s,
+    transform 0.1s;
+
+  svg {
+    display: block;
+    flex-shrink: 0;
+  }
+
+  &:hover:not(:disabled) {
+    background: rgba($theme-primary-color, 0.08);
+  }
+
+  &:active:not(:disabled) {
+    transform: scale(0.9);
+  }
+
+  &:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+  }
+}

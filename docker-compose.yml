@@ -6,9 +6,26 @@ services:
     ports:
       - "5173:5173"
     environment:
+      NODE_ENV: "development"
       DATABASE_URL: "postgres://postgres:postgres@db:5432/lxns_homepage_db"
       REDIS_URL: "redis://redis:6379"
-      NODE_ENV: "development"
+      RUN_MIGRATIONS: "true"
+      BETTER_AUTH_SECRET: "${BETTER_AUTH_SECRET}"
+      GITHUB_CLIENT_ID: "${GITHUB_CLIENT_ID}"
+      GITHUB_CLIENT_SECRET: "${GITHUB_CLIENT_SECRET}"
+      GOOGLE_CLIENT_ID: "${GOOGLE_CLIENT_ID}"
+      GOOGLE_CLIENT_SECRET: "${GOOGLE_CLIENT_SECRET}"
+      ADMIN_EMAILS: "${ADMIN_EMAILS}"
+      COS_SECRET_ID: "${COS_SECRET_ID}"
+      COS_SECRET_KEY: "${COS_SECRET_KEY}"
+      COS_UPLOAD_BUCKET: "${COS_UPLOAD_BUCKET}"
+      COS_UPLOAD_REGION: "${COS_UPLOAD_REGION}"
+      COS_UPLOAD_PREFIX: "${COS_UPLOAD_PREFIX}"
+      COS_ACCESS_BUCKET: "${COS_ACCESS_BUCKET}"
+      COS_ACCESS_REGION: "${COS_ACCESS_REGION}"
+      COS_ACCESS_PREFIX: "${COS_ACCESS_PREFIX}"
+      COS_ACCESS_EXT: "${COS_ACCESS_EXT}"
+      COS_PUBLIC_HOST: "${COS_PUBLIC_HOST}"
     depends_on:
       - db
       - redis
@@ -19,9 +36,18 @@ services:
       context: .
       dockerfile: Dockerfile
     environment:
+      NODE_ENV: "development"
       DATABASE_URL: "postgres://postgres:postgres@db:5432/lxns_homepage_db"
       REDIS_URL: "redis://redis:6379"
-      NODE_ENV: "development"
+      COS_SECRET_ID: "${COS_SECRET_ID}"
+      COS_SECRET_KEY: "${COS_SECRET_KEY}"
+      COS_UPLOAD_BUCKET: "${COS_UPLOAD_BUCKET}"
+      COS_UPLOAD_REGION: "${COS_UPLOAD_REGION}"
+      COS_UPLOAD_PREFIX: "${COS_UPLOAD_PREFIX}"
+      COS_ACCESS_BUCKET: "${COS_ACCESS_BUCKET}"
+      COS_ACCESS_REGION: "${COS_ACCESS_REGION}"
+      COS_ACCESS_PREFIX: "${COS_ACCESS_PREFIX}"
+      COS_ACCESS_EXT: "${COS_ACCESS_EXT}"
     depends_on:
       - db
       - redis
@@ -37,7 +63,7 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     restart: always
-  
+
   redis:
     image: m.daocloud.io/docker.io/library/redis:7
     volumes:

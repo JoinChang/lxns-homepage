@@ -1,0 +1,35 @@
+.picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cell {
+  flex: 1;
+  min-width: 0;
+}
+
+.clear {
+  @include flex-center();
+  gap: 0.25em;
+  padding: 6px 12px;
+  background: white;
+  color: $theme-primary-color;
+  border: 1px solid rgba($theme-primary-color, 0.2);
+  border-radius: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  user-select: none;
+  flex-shrink: 0;
+  transition:
+    background 0.2s,
+    transform 0.1s;
+
+  &:hover {
+    background: rgba($theme-primary-color, 0.08);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}

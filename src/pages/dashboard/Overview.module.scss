@@ -1,0 +1,288 @@
+.overview {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.heading {
+  @include page-heading;
+}
+
+.error {
+  background: #ffe5e5;
+  color: #a33;
+  padding: 10px 14px;
+  border-radius: 5px;
+  font-size: 14px;
+  border-left: 4px solid #a33;
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 12px;
+}
+
+.card {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 18px;
+  border-left: 4px solid $theme-primary-color;
+  box-shadow: 1px 1px 3px $theme-shadow-color;
+  border-radius: 5px;
+  text-decoration: none;
+  color: $theme-font-color;
+  background: white;
+}
+
+.cardIcon {
+  @include flex-center();
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: rgba($theme-primary-color, 0.1);
+  color: $theme-primary-color;
+  flex-shrink: 0;
+
+  svg {
+    display: block;
+  }
+}
+
+.cardBody {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.cardLabel {
+  font-size: 13px;
+  color: $theme-primary-color;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cardValue {
+  display: flex;
+  align-items: center;
+  height: 30px;
+  font-size: 26px;
+  font-weight: normal;
+  color: $theme-font-color;
+  line-height: 1;
+}
+
+.section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px 14px;
+  border-left: 4px solid $theme-primary-color;
+  box-shadow: 1px 1px 3px $theme-shadow-color;
+  border-radius: 5px;
+  background: white;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.sectionTitle {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  font-size: 15px;
+  color: $theme-font-color;
+  font-weight: bold;
+
+  svg {
+    flex-shrink: 0;
+    color: $theme-primary-color;
+  }
+}
+
+.sectionHint {
+  font-size: 12px;
+  color: $theme-font-color;
+  opacity: 0.55;
+}
+
+.chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 6px;
+  height: 120px;
+}
+
+.barCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 4px;
+  height: 100%;
+}
+
+.barTrack {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: flex-end;
+  background: rgba($theme-primary-color, 0.06);
+  border-radius: 3px;
+}
+
+.bar {
+  width: 100%;
+  background: linear-gradient(
+    to top,
+    $theme-primary-color 0%,
+    color.adjust($theme-primary-color, $lightness: 15%) 100%
+  );
+  border-radius: 3px 3px 0 0;
+  min-height: 2px;
+  position: relative;
+  transition: height 0.3s;
+}
+
+.barValue {
+  position: absolute;
+  bottom: calc(100% + 2px);
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 10px;
+  color: $theme-primary-color;
+  font-weight: bold;
+  opacity: 0;
+  transition: opacity 0.2s;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.barTrack:hover .barValue {
+  opacity: 1;
+}
+
+.barLabel {
+  font-size: 10px;
+  color: $theme-font-color;
+  opacity: 0.55;
+  text-align: center;
+  line-height: 1;
+}
+
+.hourChart {
+  display: flex;
+  align-items: flex-end;
+  gap: 3px;
+  height: 100px;
+}
+
+.hourCol {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.hourAxis {
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: $theme-font-color;
+  opacity: 0.55;
+  padding: 0 2px;
+}
+
+.refList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.refRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 10px;
+  background: rgba($theme-primary-color, 0.04);
+  border-radius: 4px;
+  font-size: 13px;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.refFill {
+  position: absolute;
+  inset: 0 auto 0 0;
+  background: rgba($theme-primary-color, 0.12);
+  z-index: -1;
+  transition: width 0.3s;
+}
+
+.refDirect .refFill {
+  background: rgba($theme-font-color, 0.08);
+}
+
+.refName {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  color: $theme-font-color;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+.refDirect .refName {
+  font-family: inherit;
+  opacity: 0.7;
+}
+
+.refCount {
+  color: $theme-primary-color;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.refDirect .refCount {
+  color: $theme-font-color;
+  opacity: 0.7;
+}
+
+.refEmpty {
+  padding: 16px 0;
+  text-align: center;
+  color: $theme-font-color;
+  opacity: 0.55;
+  font-size: 13px;
+}
+
+@media (max-width: 480px) {
+  .cardValue {
+    height: 26px;
+    font-size: 22px;
+  }
+
+  .chart {
+    height: 100px;
+  }
+
+  .barCol:nth-child(even) .barLabel {
+    visibility: hidden;
+  }
+}

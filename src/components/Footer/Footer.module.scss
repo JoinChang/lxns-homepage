@@ -63,16 +63,17 @@
 }
 
 .footer {
+    position: relative;
     text-align: center;
     padding: 30px;
     background-color: $theme-primary-color;
     margin-top: -5px;
     color: $theme-button-font-color;
-    
+
     a {
         color: $theme-button-font-color;
         text-decoration: none;
-        
+
         &:hover {
             text-decoration: underline;
         }
@@ -84,4 +85,27 @@
 
     height: 50px;
     width: 50px;
+}
+
+.adminLink {
+    @include flex-center();
+    position: absolute;
+    right: 16px;
+    bottom: 14px;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    color: $theme-button-font-color;
+    opacity: 0.35;
+    transition: opacity 0.2s, background 0.2s;
+
+    &:hover {
+        opacity: 1;
+        background: rgba(255, 255, 255, 0.12);
+        text-decoration: none;
+    }
+
+    svg {
+        display: block;
+    }
 }

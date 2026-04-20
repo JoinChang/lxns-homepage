@@ -18,13 +18,11 @@ body {
             linear-gradient(180deg, rgba(189,228,252,.5) 50%, transparent 50%) -12.5px -12.5px / 50px 50px fixed,
             linear-gradient(90deg, rgba(189,228,252,.5) 50%, transparent 50%) -12.5px -12.5px / 50px 50px fixed;
     color: var(--theme-font-color);
-    font-size: 0;
     font-family: Arial, sans-serif;
 }
 
 a {
     color: var(--theme-primary-color);
-    font-size: 14px;
     text-decoration: none;
 }
 

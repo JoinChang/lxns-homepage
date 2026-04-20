@@ -1,18 +1,25 @@
+import { useMemo, useRef } from 'react'
 import classes from './AlbumsWaterfall.module.css'
-
-import AlbumImage from "./AlbumImage.tsx"
-
-import { AlbumImageProps } from "@/data/albums.tsx"
-
-import { useEffect, useMemo, useRef, useState } from "react"
+import AlbumImage from './AlbumImage.tsx'
+import type { AlbumImageProps } from '@/data/common.tsx'
+import {
+  distributeIntoColumns,
+  useContainerColumnCount,
+} from '@/components/Masonry/useMasonryColumns.ts'
 
 interface AlbumsWaterfallProps {
   images: AlbumImageProps[]
 }
 
+function pickColumnCount(width: number): number {
+  if (width <= 300) return 1
+  if (width <= 580) return 2
+  return 3
+}
+
 export default function AlbumsWaterfall({ images }: AlbumsWaterfallProps) {
-  const [columns, setColumns] = useState(3)
   const containerRef = useRef<HTMLDivElement>(null)
+  const columnCount = useContainerColumnCount(containerRef, pickColumnCount, 3)
 
   const sortedImages = useMemo(() => {
     return images.slice().sort((a, b) => {
@@ -23,49 +30,15 @@ export default function AlbumsWaterfall({ images }: AlbumsWaterfallProps) {
     })
   }, [images])
 
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const handleResize = () => {
-      const width = container.clientWidth
-      if (width <= 300) {
-        setColumns(1)
-      } else if (width <= 580) {
-        setColumns(2)
-      } else {
-        setColumns(3)
-      }
-    }
-
-    handleResize()
-
-    const observer = new ResizeObserver(handleResize)
-
-    observer.observe(container)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [containerRef])
-
-  const columned = useMemo(() => {
-    const cols: AlbumImageProps[][] = Array.from({ length: columns }, () => [])
-    const heights = Array(columns).fill(0)
-
-    sortedImages.forEach((img) => {
-      const min = heights.indexOf(Math.min(...heights))
-      cols[min].push(img)
-      heights[min] += 1 / img.ratio
-    })
-
-    return cols
-  }, [sortedImages, columns])
+  const columned = useMemo(
+    () => distributeIntoColumns(sortedImages, columnCount),
+    [sortedImages, columnCount],
+  )
 
   return (
     <div className={classes.albumWaterfall} ref={containerRef}>
       {columned.map((col, i) => (
-        <div key={i} style={{ flex: 1, display: "flex", flexDirection: "column", gap: "15px" }}>
+        <div key={i} style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '15px' }}>
           {col.map((image) => (
             <AlbumImage key={image.file} {...image} />
           ))}

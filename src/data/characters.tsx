@@ -3,12 +3,14 @@ import Tags from "../components/Tags/Tags.tsx"
 
 import React from "react"
 
+interface ArtistProps {
+  name: string
+  icon?: React.ReactNode
+  href?: string
+}
+
 export interface CharacterStandProps {
-  artist: {
-    name: string
-    icon?: React.ReactNode
-    href?: string
-  }
+  artist: ArtistProps
   url: string
 }
 

@@ -11,7 +11,6 @@ interface TabGroupProps {
 export default function TabGroup({ activeTab, containerRef, children }: TabGroupProps) {
   const [clientWidth, setClientWidth] = useState<number>(0)
 
-  // 监听窗口大小变化，用于计算居中位置
   useEffect(() => {
     const handleResize = () => {
       setClientWidth(document.documentElement.clientWidth)
@@ -26,7 +25,6 @@ export default function TabGroup({ activeTab, containerRef, children }: TabGroup
     }
   }, [])
 
-  // 同步 TabContent 的高度
   useEffect(() => {
     const container = containerRef.current
     if (!container) return
@@ -58,7 +56,6 @@ export default function TabGroup({ activeTab, containerRef, children }: TabGroup
     }
   }, [containerRef])
 
-  // 计算 activeTab 的位置并居中
   useEffect(() => {
     const container = containerRef.current
     if (!container) return

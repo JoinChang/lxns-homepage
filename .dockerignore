@@ -44,14 +44,15 @@ Thumbs.db
 *.sublime-workspace
 
 # Environment files
-.env*.local
-.env.local
-.env.development.local
-.env.test.local
+.env
+.env.*
+!.env.example
 
 # Docker files
 Dockerfile
 docker-compose.yml
+docker-compose.override.yml
+docker-compose.prod.yml
 .dockerignore
 
 # Documentation

@@ -4,16 +4,23 @@ import { setupMiddlewares } from './middleware'
 import { SSRService } from './services/ssr'
 import { createAPIRouter } from './routes/api'
 import { createSSRRouter } from './routes/ssr'
+import { createAuthRouter } from './routes/auth'
 import { AnalyticsService } from './services/analytics'
+import { errorMiddleware } from './lib/errors'
 
 async function createServer() {
-  // Create http server
   const app = express()
 
-  // Setup middlewares
-  app.use(express.json())
+  // 信任反向代理传来的 X-Forwarded-For，正确记录用户 IP 地址
+  app.set('trust proxy', 1)
+
+  app.use(express.json({ limit: '50mb' }))
   app.use(async (req, res, next) => {
-    if (req.headers['accept']?.includes('text/html')) {
+    const isPageView =
+      req.method === 'GET' &&
+      req.path === '/' &&
+      req.headers['accept']?.includes('text/html')
+    if (isPageView) {
       AnalyticsService.recordPageView(
         req.path,
         req.get('User-Agent') || undefined,
@@ -25,23 +32,22 @@ async function createServer() {
     next()
   })
 
-  // Initialize services
   const ssrService = new SSRService(ssrConfig)
 
-  // Setup Vite or production middlewares
   const vite = await setupMiddlewares(app)
   if (vite) {
     ssrService.setVite(vite)
   }
 
-  // Mount routes
+  app.use('/api/auth', createAuthRouter())
   app.use('/api', createAPIRouter())
+  // /api 之后、SSR 之前挂错误中间件，让所有 API 路由的 throw 走统一格式
+  app.use('/api', errorMiddleware)
   app.use(createSSRRouter(ssrService))
 
   return app
 }
 
-// Start http server
 createServer()
   .then((app) => {
     app.listen(port, () => {

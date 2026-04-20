@@ -10,9 +10,15 @@
     flex: 1;
     background: $theme-primary-color;
     color: $theme-button-font-color;
-    padding: 10px;
+    padding: 0 10px;
+    height: 40px;
+    box-sizing: border-box;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     border-radius: 15px;
     font-size: 15px;
+    line-height: 1;
     text-align: center;
     cursor: pointer;
     position: relative;

@@ -1,0 +1,107 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 0 1rem;
+}
+
+.card {
+    background: white;
+    padding: 30px;
+    border-radius: 12px;
+    border: 1px solid $theme-shadow-color;
+    max-width: 400px;
+    width: 100%;
+}
+
+.title {
+    margin: 0 0 0.5rem;
+    font-size: 20px;
+    color: $theme-font-color;
+    font-weight: bold;
+}
+
+.subtitle {
+    color: color.adjust($theme-font-color, $alpha: -0.2);
+    font-size: 14px;
+    margin: 0;
+}
+
+.buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.error {
+    margin-top: 1rem;
+    padding: 10px 14px;
+    background: #ffe5e5;
+    color: #a33;
+    border-left: 4px solid #a33;
+    border-radius: 5px;
+    font-size: 13px;
+}
+
+.button {
+    @include flex-center();
+    gap: 0.5rem;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: normal;
+    border: none;
+    border-radius: 20px;
+    border: 1px solid $theme-shadow-color;
+    cursor: pointer;
+    user-select: none;
+    transform: scale(1);
+    transition:
+        opacity 0.3s,
+        background 0.3s,
+        transform 0.1s;
+    color: white;
+
+    .icon {
+        width: 18px;
+        height: 18px;
+    }
+
+    &:active:not(:disabled) {
+        transform: scale(0.95);
+    }
+
+    &:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+}
+
+.githubButton {
+    background: #24292e;
+
+    &:hover {
+        background: color.adjust(#24292e, $lightness: 5%);
+    }
+}
+
+.googleButton {
+    color: $theme-font-color;
+    background: white;
+
+    &:hover {
+        background: color.adjust(white, $lightness: -5%);
+    }
+
+    .icon {
+        padding: 1px;
+    }
+}
+
+.footer {
+    margin: 2rem 0 0;
+    font-size: 12px;
+    color: color.adjust($theme-font-color, $alpha: -0.4);
+    line-height: 1.5;
+}

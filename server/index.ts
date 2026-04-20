@@ -39,9 +39,14 @@ async function createServer() {
     ssrService.setVite(vite)
   }
 
+  app.use('/api', (_req, res, next) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+    res.set('Pragma', 'no-cache')
+    res.set('Vary', 'Cookie')
+    next()
+  })
   app.use('/api/auth', createAuthRouter())
   app.use('/api', createAPIRouter())
-  // /api 之后、SSR 之前挂错误中间件，让所有 API 路由的 throw 走统一格式
   app.use('/api', errorMiddleware)
   app.use(createSSRRouter(ssrService))
 

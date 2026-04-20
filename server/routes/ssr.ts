@@ -7,6 +7,9 @@ export function createSSRRouter(ssrService: SSRService): Router {
   const router = Router()
 
   router.get('*all', async (req, res) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, private')
+    res.set('Pragma', 'no-cache')
+
     const [albums, friends] = await Promise.all([
       prisma.album
         .findMany({

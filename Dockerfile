@@ -1,4 +1,4 @@
-FROM m.daocloud.io/docker.io/library/node:20 AS builder
+FROM node:24 AS builder
 
 RUN corepack enable yarn && corepack prepare yarn@stable --activate
 
@@ -12,27 +12,27 @@ RUN yarn install --immutable --inline-builds > /tmp/yarn-install.log 2>&1 \
   || (echo "=== yarn install failed ===" && cat /tmp/yarn-install.log && exit 1)
 
 COPY . .
+
+RUN yarn prisma:generate
 RUN yarn build
 
-FROM m.daocloud.io/docker.io/library/node:20 AS runner
+FROM node:24 AS runner
 
 RUN apt-get update && apt-get install -y netcat-openbsd
 
+ENV NODE_ENV=production
+
 WORKDIR /app
 
-# Copy dependencies
 COPY --from=builder /app/node_modules ./node_modules
 COPY --from=builder /app/package.json ./package.json
-COPY --from=builder /app/prisma ./prisma
-
-# Copy built files
 COPY --from=builder /app/dist ./dist
-
-COPY . .
+COPY prisma ./prisma
+COPY prisma.config.ts entrypoint.sh ./
 
 RUN chmod +x ./entrypoint.sh
 
 EXPOSE 5173
 
 ENTRYPOINT ["./entrypoint.sh"]
-CMD ["npx", "tsx", "server/index.ts"]
+CMD ["node", "dist/server/index.js"]

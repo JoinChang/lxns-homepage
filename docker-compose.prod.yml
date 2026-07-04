@@ -1,17 +1,11 @@
 services:
   app:
-    build:
-      args:
-        HTTP_PROXY: "http://172.17.0.1:7890"
-        HTTPS_PROXY: "http://172.17.0.1:7890"
+    image: ghcr.io/joinchang/lxns-homepage:latest
     environment:
       NODE_ENV: "production"
       BETTER_AUTH_URL: "https://lxns.net"
 
   worker:
-    build:
-      args:
-        HTTP_PROXY: "http://172.17.0.1:7890"
-        HTTPS_PROXY: "http://172.17.0.1:7890"
+    image: ghcr.io/joinchang/lxns-homepage:latest
     environment:
       NODE_ENV: "production"

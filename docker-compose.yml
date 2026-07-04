@@ -52,7 +52,7 @@ services:
       - db
       - redis
     restart: always
-    command: ["npx", "tsx", "server/worker.ts"]
+    command: ["node", "dist/server/worker.js"]
 
   db:
     image: m.daocloud.io/docker.io/library/postgres:16

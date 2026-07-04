@@ -1,4 +1,6 @@
 import fs from 'node:fs/promises'
+import path from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { Transform } from 'node:stream'
 import type { Request, Response } from 'express'
 import type { ViteDevServer } from 'vite'
@@ -138,7 +140,9 @@ export class SSRService {
   }
 
   private async _loadProductionTemplate(): Promise<Result<SSRTemplateResult, Error>> {
-    const render = (await import('../../dist/server/entry-server.js')).render
+    // 路径相对 cwd 在运行时计算，避免被 esbuild 打包内联（entry-server 由 vite 单独构建）
+    const entryServerUrl = pathToFileURL(path.resolve('dist/server/entry-server.js')).href
+    const render = (await import(entryServerUrl)).render
     return ok({ template: this.templateHtml, render })
   }
 }

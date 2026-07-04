@@ -12,12 +12,9 @@ until nc -z redis 6379; do
 done
 echo "Redis is up!"
 
-echo "Generating Prisma Client..."
-npx prisma generate
-
 if [ "$RUN_MIGRATIONS" = "true" ]; then
   echo "Running prisma migrate deploy..."
-  npx prisma migrate deploy
+  ./node_modules/.bin/prisma migrate deploy
 else
   echo "Skipping prisma migrations"
 fi

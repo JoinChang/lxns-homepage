@@ -21,6 +21,7 @@ FROM node:24 AS runner
 RUN apt-get update && apt-get install -y netcat-openbsd
 
 ENV NODE_ENV=production
+ENV NODE_USE_ENV_PROXY=1
 
 WORKDIR /app
 

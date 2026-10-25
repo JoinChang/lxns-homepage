@@ -56,5 +56,5 @@ jobs:
             cd ~/lxns-homepage
             proxychains git pull origin main
             sudo docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull app worker
-            sudo -E docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --no-build
+            sudo -E docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --no-deps --no-build app worker
             sudo docker image prune -f

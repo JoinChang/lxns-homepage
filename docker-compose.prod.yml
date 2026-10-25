@@ -4,8 +4,12 @@ services:
     environment:
       NODE_ENV: "production"
       BETTER_AUTH_URL: "https://lxns.net"
+      NO_PROXY: "localhost"
+      no_proxy: "localhost"
 
   worker:
     image: ghcr.io/joinchang/lxns-homepage:latest
     environment:
       NODE_ENV: "production"
+      NO_PROXY: "localhost"
+      no_proxy: "localhost"
